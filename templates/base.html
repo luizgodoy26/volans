@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Promptus{% endblock %}</title>
+
+    <!-- Custom stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Bootstrap stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"
+    >
+
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+<body>
+
+<div class="alertbar">
+  <b>Definir: </b> O que inserir aqui nesta barra de alertas.
+</div>
+
+
+    {% block sidebar %}
+        <div class="container">
+        <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                    <span class="image">
+                        <!--<img src="logo.png" alt="">-->
+                    </span>
+                <div class="text logo-text">
+                    <span class="name">{{ user.get_first_name.0|title }} {{ user.get_first_name|last|title }}  </span>
+                    <span class="profession">{{ user.get_username }}</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <!-- TODO: fazer search box funcionar-->
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">#</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Clientes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bell icon'></i>
+                            <span class="text nav-text">Sua empresa</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-pie-chart-alt icon'></i>
+                            <span class="text nav-text">Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-heart icon'></i>
+                            <span class="text nav-text">Likes</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-wallet icon'></i>
+                            <span class="text nav-text">Wallets</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+                <li class="mode" id="darkModeToggle">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+            </div>
+        </div>
+    </nav>
+    </div>
+        <div class="mode2">
+            <div class="form-check form-switch ms-auto mt-3 me-3">
+              <label class="form-check-label ms-3" for="lightSwitch">
+                  <path
+                    d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
+                  />
+                </svg>
+              </label>
+              <input class="form-check-input" type="checkbox" id="lightSwitch" />
+            </div>
+    </div>
+    {% endblock %}
+
+
+
+
+
+    {% block navbar2 %}
+        <div class="navbar2">
+        <ul>
+          <li class="active">
+            <a href="#">
+              <i class='bx bx-home icon'></i>
+              <i class='bx bxs-home activeIcon'></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-user icon'></i>
+              <i class='bx bxs-user activeIcon'></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-heart icon'></i>
+              <i class='bx bxs-heart activeIcon'></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-folder icon'></i>
+              <i class='bx bxs-folder activeIcon'></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class='bx bx-cog icon'></i>
+              <i class='bx bxs-cog activeIcon'></i>
+            </a>
+          </li>
+          <div class="indicator"></div>
+        </ul>
+    </div>
+    {% endblock %}
+
+
+    <div class="container">
+
+        {% block main %}
+
+        {% endblock %}
+
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+
+
+
+    <script src="{% static 'js/switch.js' %}"></script>
+
+    <script>
+
+    const navBar2 = document.querySelector(".navbar2")
+            allLi = document.querySelectorAll("li");
+      allLi.forEach((li, index) => {
+         li.addEventListener("click" , e =>{
+           e.preventDefault(); //preventing from submitting
+           navBar2.querySelector(".active").classList.remove("active");
+           li.classList.add("active");
+           const indicator = document.querySelector(".indicator");
+           indicator.style.transform = `translateX(calc(${index * 90}px))`;
+         });
+      });
+
+</script>
+
+
+
+
+</body>
+</html>

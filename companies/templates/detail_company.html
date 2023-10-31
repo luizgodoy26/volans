@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+    {% block main %}
+      <h2>Detalhes da empresa</h2>
+      <table>
+        <tr>
+          <td><strong>Nome da empresa:</strong></td>
+          <td>{{ company.company_name }}</td>
+        </tr>
+        <tr>
+          <td><strong>CNPJ:</strong></td>
+          <td>{{ company.cnpj }}</td>
+        </tr>
+        <tr>
+          <td><strong>Endereço:</strong></td>
+          <td>{{ company.address }}</td>
+        </tr>
+        <tr>
+          <td><strong>CEP:</strong></td>
+          <td>{{ company.cep }}</td>
+        </tr>
+        <tr>
+          <td><strong>Cidade:</strong></td>
+          <td>{{ company.city }}</td>
+        </tr>
+        <tr>
+          <td><strong>Bairro:</strong></td>
+          <td>{{ company.neighborhood }}</td>
+        </tr>
+        <tr>
+          <td><strong>Bio:</strong></td>
+          <td>{{ company.bio }}</td>
+        </tr>
+      </table>
+
+      <a href="{% url 'edit_company' company.id %}">
+          <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+      </a>
+    {% endblock %}

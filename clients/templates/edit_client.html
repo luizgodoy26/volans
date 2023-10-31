@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+
+    <title>Editar Empresa</title>
+    {% block main %}
+      <h2>Edit Company</h2>
+      <form method="post"  id="form-1">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+
+        <a href="{% url 'detail_client' client.id %}">
+          <button type="button" class="btn btn-warning" id="btn-bg-red-1">Cancelar</button>
+        </a>
+
+        <button type="submit" class="btn btn-primary" id="btn-bg-blue-1">Salvar</button>
+
+      </form>
+    {% endblock %}
+
+
+

@@ -1,0 +1,18 @@
+
+<title>Criar cliente</title>
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+    {% block main %}
+    <h1>Criar cliente</h1>
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="btn btn-primary" id="btn-bg-blue-1">Salvar</button>
+
+    </form>
+    {% endblock %}
+

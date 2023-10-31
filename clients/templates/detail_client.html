@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+    {% block main %}
+    <h2>Detalhes do cliente</h2>
+    <table>
+        <tr>
+          <td><strong>Nome do cliente:</strong></td>
+          <td>{{ client.client_name }}</td>
+        </tr>
+        <tr>
+          <td><strong>CNPJ:</strong></td>
+          <td>{{ client.cnpj }}</td>
+        </tr>
+        <tr>
+          <td><strong>CPF:</strong></td>
+          <td>{{ client.cpf }}</td>
+        </tr>
+        <tr>
+          <td><strong>Email principal:</strong></td>
+          <td>{{ client.email_primary }}</td>
+        </tr>
+        <tr>
+          <td><strong>Email secundário:</strong></td>
+          <td>{{ client.email_secondary }}</td>
+        </tr>
+        <tr>
+          <td><strong>Telefone principal:</strong></td>
+          <td>{{ client.phone_primary }}</td>
+        </tr>
+        <tr>
+          <td><strong>Telefone secundário:</strong></td>
+          <td>{{ client.phone_secondary }}</td>
+        </tr>
+        <tr>
+          <td><strong>Endereço:</strong></td>
+          <td>{{ client.address }}</td>
+        </tr>
+        <tr>
+          <td><strong>CEP:</strong></td>
+          <td>{{ client.cep }}</td>
+        </tr>
+        <tr>
+          <td><strong>Cidade:</strong></td>
+          <td>{{ client.city }}</td>
+        </tr>
+        <tr>
+          <td><strong>Bairro:</strong></td>
+          <td>{{ client.neighborhood }}</td>
+        </tr>
+        <tr>
+          <td><strong>Bio:</strong></td>
+          <td>{{ client.bio }}</td>
+        </tr>
+      </table>
+
+      <a href="{% url 'edit_client' client.id %}">
+          <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+      </a>
+    {% endblock %}
