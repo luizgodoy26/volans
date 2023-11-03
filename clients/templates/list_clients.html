@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Lista de clientes
+{% endblock %}
+
+{% block main %}
+
+
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Clientes</div>
+        <div class="card-body">
+          <h3 class="card-title">{{ client_count }}</h3>
+        </div>
+      </div>
+
+
+    <div class="container">
+        <div class="container-list" id="one">
+
+            <h2>Lista de clientes</h2>
+            <div>
+            </div>
+
+            <table class="table table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for client in clients %}
+                            <tr>
+                                <!-- NAME -->
+                                <td>
+                                    <a href="{% url 'detail_client' client.id %}">{{ client.client_name }}</a>
+                                </td>
+
+                                
+                                <!-- OPTIONS -->
+                                <td>
+                                    <a href="{% url 'edit_client' client.id %}">
+                                        <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                </tbody>
+
+            </table>
+
+            <div class="add-new-client-btn">
+                <a href="{% url 'create_client' %}" class="new-client-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </a>
+                <span class="tooltip">Adicionar pessoa</span>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

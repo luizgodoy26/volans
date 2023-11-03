@@ -3,6 +3,35 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from .forms import ClientCreationForm, ClientEditForm
 from .models import Client
 
+
+#TODO: Adicionar filtros
+
+
+@login_required
+def list_clients(request):
+    clients = Client.objects.filter(user=request.user)
+    #contracts = Contract.objects.filter(user=request.user)
+    #company_filter = CompanyFilter(request.GET, queryset=clients)
+
+
+    #total_received = 0
+    #total_pending = 0
+
+    #for client in clients:
+        #total_received += Contract.objects.filter(user=request.user, company_client=client, status='PD').aggregate(sum=Sum('value'))['sum'] or 0
+        #total_pending += Contract.objects.filter(user=request.user, company_client=client, status='PN').aggregate(sum=Sum('value'))['sum'] or 0
+
+        #client.received_payments = Contract.objects.filter(user=request.user, company_client=client, status='PD').aggregate(sum=Sum('value'))['sum'] or 0
+        #client.pending_payments = Contract.objects.filter(user=request.user, company_client=client, status='PN').aggregate(sum=Sum('value'))['sum'] or 0
+
+    client_count = Client.objects.filter(user=request.user).count()
+    return render(request, 'list_clients.html', {'clients': clients,
+                                                       #'company_filter': company_filter,
+                                                       'client_count': client_count})
+
+
+
+
 @login_required
 def create_client(request):
     if request.method == 'POST':
