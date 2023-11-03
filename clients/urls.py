@@ -2,6 +2,10 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    
+    #Currently set as home page ''
+    path('', views.list_clients, name='list_clients'),
+
     path('create/', views.create_client, name='create_client'),
 
     path('list/', views.list_clients, name='list_clients'),

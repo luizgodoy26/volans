@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'accounts',
     'companies',
     'clients',
+    'items',
 ]
 
 #Crispy template

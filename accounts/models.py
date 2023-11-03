@@ -73,6 +73,11 @@ class User(AbstractBaseUser):
     def get_first_name(self): # Return the firstname of the user
         first_name = self.full_name.split(' ')
         return first_name
+    
+    
+
+    def get_company(self): # Return the company of the user
+        return self.company
 
     # def get_short_name(self):
     #     return self.email

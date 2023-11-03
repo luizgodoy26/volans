@@ -2,6 +2,7 @@
 from companies import urls as companies_urls
 from accounts import urls as accounts_urls
 from clients import urls as clients_urls
+from items import urls as items_urls
 from django.contrib import admin
 from django.urls import path, include
 
@@ -14,7 +15,11 @@ urlpatterns = [
     # Companies app urls
     path('companies/', include(companies_urls)),
 
+    # Items app urls
+    path('items/', include(items_urls)),
+
     # Clients app urls
-    path('clients/', include(clients_urls)),
+    path('clients/', include(clients_urls)),    
+    path('', include(clients_urls)),
 
 ]

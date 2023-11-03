@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Itens
+{% endblock %}
+
+{% block main %}
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Itens</div>
+        <div class="card-body">
+            <h3 class="card-title">{{ item_count }}</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-list" id="one">
+            <h2>Lista de Itens</h2>
+            <div></div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'detail_item' item.id %}">{{ item.name }}</a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'edit_item' item.id %}">
+                                    <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="add-new-item-btn">
+                <a href="{% url 'create_item' %}" class="new-item-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+                <span class="tooltip">Adicionar item</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

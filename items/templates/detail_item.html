@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Detalhes do Item</title>
+{% endblock %}
+
+{% block main %}
+    <h2>Detalhes do Item</h2>
+    <table>
+        <tr>
+            <td><strong>Nome:</strong></td>
+            <td>{{ item.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>Quantidade:</strong></td>
+            <td>{{ item.stock }}</td>
+        </tr>
+        <tr>
+            <td><strong>Unidade:</strong></td>
+            <td>{{ item.unity }}</td>
+        </tr>
+        <tr>
+            <td><strong>Valor:</strong></td>
+            <td>{{ item.value }}</td>
+        </tr>
+        <tr>
+            <td><strong>Valor Máximo de Desconto:</strong></td>
+            <td>{{ item.max_discount }}</td>
+        </tr>
+        <tr>
+            <td><strong>Descrição:</strong></td>
+            <td>{{ item.description }}</td>
+        </tr>
+    </table>
+
+    <a href="{% url 'edit_item' item.id %}">
+        <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+    </a>
+{% endblock %}
