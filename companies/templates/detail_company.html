@@ -3,7 +3,12 @@
 
     {% block main %}
       <h2>Detalhes da empresa</h2>
-      <table>
+      <table class="detail">
+        <tr>
+          <td>
+            <img src="{{ company.logo.url }}"></img>
+          </td>
+        </tr>
         <tr>
           <td><strong>Nome da empresa:</strong></td>
           <td>{{ company.company_name }}</td>
