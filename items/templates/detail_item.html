@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <td><strong>Quantidade:</strong></td>
-            <td>{{ item.stock }}</td>
+            <td>{{ item.stock_set.all.count }}</td>
         </tr>
         <tr>
             <td><strong>Unidade:</strong></td>
@@ -33,6 +33,15 @@
             <td>{{ item.description }}</td>
         </tr>
     </table>
+
+    <h3>Estoques associados a este item:</h3>
+    <ul>
+        {% for stock in item.stock_set.all %}
+            <li>
+                <strong>Size:</strong> {{ stock.size.size }}, <strong>Category:</strong> {{ stock.category.category }}, <strong>Quantity:</strong> {{ stock.quantity }}, <strong>Price:</strong> {{ stock.price }}, <strong>Max Discount:</strong> {{ stock.max_discount }}
+            </li>
+        {% endfor %}
+    </ul>
 
     <a href="{% url 'edit_item' item.id %}">
         <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>

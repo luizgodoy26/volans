@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+    <title>Editar Tamanho</title>
+{% endblock %}
+
+{% block main %}
+    <h2>Editar Tamanho</h2>
+    <form method="post" id="form-1">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <a href="{% url 'list_categories' %}">
+            <button type="button" class="btn btn-warning" id="btn-bg-red-1">Cancelar</button>
+        </a>
+
+        <button type="submit" class="btn btn-primary" id="btn-bg-blue-1">Salvar</button>
+    </form>
+{% endblock %}

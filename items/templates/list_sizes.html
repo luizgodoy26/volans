@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de Tamanhos
+{% endblock %}
+
+{% block main %}
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Tamanhos</div>
+        <div class="card-body">
+            <h3 class="card-title">{{ size_count }}</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-list" id="one">
+            <h2>Lista de Tamanhos</h2>
+            <div></div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Tamanho</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for size in sizes %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'edit_size' size.id %}">{{ size }}</a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'edit_size' size.id %}">
+                                    <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="add-new-size-btn">
+                <a href="{% url 'create_size' %}" class="new-size-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+                <span class="tooltip">Adicionar novos tamanhos</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

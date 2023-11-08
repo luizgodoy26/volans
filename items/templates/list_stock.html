@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lista de estoques
+{% endblock %}
+
+{% block main %}
+    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+        <div class="card-header">Estoque</div>
+        <div class="card-body">
+            <h3 class="card-title">{{ stock_count }}</h3>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="container-list" id="one">
+            <h2>Lista de estoques</h2>
+            <div></div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Tamanho</th>
+                        <th>Quantidade</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for stock in stocks %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'detail_item' stock.item.id %}">{{ stock.item.name }}</a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'edit_size' stock.id %}">{{ stock.size }}</a>
+                            </td>
+
+                            <td>
+                                <a href="{% url 'edit_stock' stock.id %}">{{ stock.quantity }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'edit_stock' stock.id %}">
+                                    <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="add-new-stock-btn">
+                <a href="{% url 'create_stock' %}" class="new-stock-icon">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+                <span class="tooltip">Adicionar stock</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
