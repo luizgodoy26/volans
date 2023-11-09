@@ -23,9 +23,9 @@
   <b>Definir: </b> O que inserir aqui nesta barra de alertas.
 </div>
 
-
-    {% block sidebar %}
-        <div class="container">
+    <div class="flex-shrink-0">
+      {% block sidebar %}
+        
         <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -48,19 +48,19 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'list_items' %}">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">#</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'list_clients' %}">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Clientes</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="{% url 'list_clients' %}">
                             <i class='bx bx-bell icon'></i>
                             <span class="text nav-text">Sua empresa</span>
                         </a>
@@ -76,17 +76,18 @@
                     </a>
                 </li>
                 <li class="mode" id="darkModeToggle">
-                <div class="sun-moon">
-                    <i class='bx bx-moon icon moon'></i>
-                    <i class='bx bx-sun icon sun'></i>
-                </div>
-                <span class="mode-text text">Dark mode</span>
-                <div class="toggle-switch">
-                    <span class="switch"></span>
-                </div>
-            </li>
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
             </div>
         </div>
+        
     </nav>
     </div>
         <div class="mode2">
@@ -99,50 +100,9 @@
               </label>
               <input class="form-check-input" type="checkbox" id="lightSwitch" />
             </div>
-    </div>
-    {% endblock %}
-
-
-
-
-
-    {% block navbar2 %}
-        <div class="navbar2">
-        <ul>
-          <li class="active">
-            <a href="#">
-              <i class='bx bx-home icon'></i>
-              <i class='bx bxs-home activeIcon'></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class='bx bx-user icon'></i>
-              <i class='bx bxs-user activeIcon'></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class='bx bx-heart icon'></i>
-              <i class='bx bxs-heart activeIcon'></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class='bx bx-folder icon'></i>
-              <i class='bx bxs-folder activeIcon'></i>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <i class='bx bx-cog icon'></i>
-              <i class='bx bxs-cog activeIcon'></i>
-            </a>
-          </li>
-          <div class="indicator"></div>
-        </ul>
-    </div>
-    {% endblock %}
+    
+        {% endblock %}
+      </div>
 
 
     <div class="container">
@@ -166,20 +126,31 @@
     <script src="{% static 'js/switch.js' %}"></script>
 
     <script>
-
-    const navBar2 = document.querySelector(".navbar2")
-            allLi = document.querySelectorAll("li");
-      allLi.forEach((li, index) => {
-         li.addEventListener("click" , e =>{
-           e.preventDefault(); //preventing from submitting
-           navBar2.querySelector(".active").classList.remove("active");
-           li.classList.add("active");
-           const indicator = document.querySelector(".indicator");
-           indicator.style.transform = `translateX(calc(${index * 90}px))`;
-         });
+  
+        document.addEventListener("DOMContentLoaded", function () {
+        const allLi = document.querySelectorAll(".menu-links nav-link");
+      
+        allLi.forEach((li, index) => {
+          li.addEventListener("click", (e) => {
+            e.preventDefault();
+      
+            // Remove o 'active' do item ativo atual
+            const activeItem = document.querySelector(".menu-links .active");
+            if (activeItem) {
+              activeItem.classList.remove("active");
+            }
+      
+            // Adiciona 'active' class ao item clicado
+            li.classList.add("active");
+      
+            // Atualiza a posição do indicador
+            const indicator = document.querySelector(".indicator");
+            indicator.style.transform = `translateX(calc(${index * 90}px))`;
+          });
+        });
       });
-
-</script>
+  
+    </script>
 
 
 

@@ -33,17 +33,48 @@
             <td>{{ item.description }}</td>
         </tr>
     </table>
+    
+    <a href="{% url 'edit_item' item.id %}">
+        <button class="btn btn-primary" id="btn-bg-blue-1">Editar item</button>
+    </a>
 
     <h3>Estoques associados a este item:</h3>
-    <ul>
-        {% for stock in item.stock_set.all %}
-            <li>
-                <strong>Size:</strong> {{ stock.size.size }}, <strong>Category:</strong> {{ stock.category.category }}, <strong>Quantity:</strong> {{ stock.quantity }}, <strong>Price:</strong> {{ stock.price }}, <strong>Max Discount:</strong> {{ stock.max_discount }}
-            </li>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Tamanho</th>
+                <th>Categoria</th>
+                <th>Quantidade</th>
+                <th>Valor</th>
+                <th>Desconto máximo</th>
+            </tr>
+        </thead>
+        {% for stock in item.stock_set.all %}            
+            <tr>
+                <td>
+                    <a href="{% url 'edit_stock' stock.id %}"> {{ stock.size.size }}</a>                       
+                </td>
+
+                <td>
+                    <a href="{% url 'edit_stock' stock.id %}"> {{ stock.category.category }}</a>                     
+                </td>
+
+                <td>
+                    <a href="{% url 'edit_stock' stock.id %}">{{ stock.quantity }}</a>
+                </td>
+
+                <td>
+                    <a href="{% url 'edit_stock' stock.id %}">{{ stock.price }}</a>
+                </td>
+
+                <td>
+                    <a href="{% url 'edit_stock' stock.id %}">{{ stock.max_discount }} %</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 
     <a href="{% url 'edit_item' item.id %}">
-        <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+        <button class="btn btn-primary" id="btn-bg-blue-1">Editar item</button>
     </a>
 {% endblock %}

@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.urls import reverse_lazy
 from .models import Item, Size, Category, Stock
 from .forms import ItemForm, SizeForm, CategoryForm, StockForm
 
 def is_manager(user):
     return user.manager
-
 
 
 @login_required
@@ -38,6 +38,7 @@ def list_stock(request):
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def create_item(request):
     if request.method == 'POST':
         form = ItemForm(request.POST)
@@ -53,6 +54,7 @@ def create_item(request):
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def create_size(request):
     if request.method == 'POST':
         form = SizeForm(request.POST)
@@ -68,6 +70,7 @@ def create_size(request):
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def create_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -83,6 +86,7 @@ def create_category(request):
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def create_stock(request):
     if request.method == 'POST':
         form = StockForm(request.POST)
@@ -98,6 +102,7 @@ def create_stock(request):
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def edit_item(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
 
@@ -110,13 +115,14 @@ def edit_item(request, item_id):
         else:
             form = ItemForm(instance=item)
     else:
-        return render(request, 'errors/error_page.html', {'message': 'Você não tem permissão para editar este item'})
+        return render(request, 'errors/forbidden_access.html', {'message': 'Você não tem permissão para editar este item'})
 
     return render(request, 'edit_item.html', {'form': form, 'item': item})
 
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def edit_size(request, size_id):
     size = get_object_or_404(Size, pk=size_id)
 
@@ -129,13 +135,14 @@ def edit_size(request, size_id):
         else:
             form = SizeForm(instance=size)
     else:
-        return render(request, 'errors/error_page.html', {'message': 'Você não tem permissão para editar este tamanho'})
+        return render(request, 'errors/forbidden_access.html', {'message': 'Você não tem permissão para editar este tamanho'})
 
     return render(request, 'edit_size.html', {'form': form, 'size': size})
 
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def edit_category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
 
@@ -148,13 +155,14 @@ def edit_category(request, category_id):
         else:
             form = CategoryForm(instance=category)
     else:
-        return render(request, 'errors/error_page.html', {'message': 'Você não tem permissão para editar esta categoria'})
+        return render(request, 'errors/forbidden_access.html', {'message': 'Você não tem permissão para editar esta categoria'})
 
     return render(request, 'edit_category.html', {'form': form, 'category': category})
 
 
 
 @login_required
+@user_passes_test(is_manager, login_url=reverse_lazy('forbidden_access'))
 def edit_stock(request, stock_id):
     stock = get_object_or_404(Stock, pk=stock_id)
 
@@ -167,7 +175,7 @@ def edit_stock(request, stock_id):
         else:
             form = StockForm(instance=stock)
     else:
-        return render(request, 'errors/error_page.html', {'message': 'Você não tem permissão para editar este estoque'})
+        return render(request, 'errors/forbidden_access.html', {'message': 'Você não tem permissão para editar este estoque'})
 
     return render(request, 'edit_stock.html', {'form': form, 'stock': stock})
 
