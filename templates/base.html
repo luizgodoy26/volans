@@ -8,101 +8,12 @@
     <!-- Custom stylesheet -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- Bootstrap stylesheet -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"
-    >
-
-    <!-- Icons -->
-    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 <body>
 
 <div class="alertbar">
   <b>Definir: </b> O que inserir aqui nesta barra de alertas.
 </div>
-
-    <div class="flex-shrink-0">
-      {% block sidebar %}
-        
-        <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                    <span class="image">
-                        <img src="{{ user.company.logo.url }}" alt="">
-                    </span>
-                <div class="text logo-text">
-                    <span class="name">{{ user.get_first_name.0|title }} {{ user.get_first_name|last|title }}  </span>
-                    <span class="profession">{{ user.get_username }}</span>
-                </div>
-            </div>
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-        <div class="menu-bar">
-            <div class="menu">
-                <!-- TODO: fazer search box funcionar-->
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="{% url 'list_items' %}">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">#</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="{% url 'list_clients' %}">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Clientes</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="{% url 'list_clients' %}">
-                            <i class='bx bx-bell icon'></i>
-                            <span class="text nav-text">Sua empresa</span>
-                        </a>
-                    </li>
-                    
-                </ul>
-            </div>
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-                <li class="mode" id="darkModeToggle">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-            </div>
-        </div>
-        
-    </nav>
-    </div>
-        <div class="mode2">
-            <div class="form-check form-switch ms-auto mt-3 me-3">
-              <label class="form-check-label ms-3" for="lightSwitch">
-                  <path
-                    d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"
-                  />
-                </svg>
-              </label>
-              <input class="form-check-input" type="checkbox" id="lightSwitch" />
-            </div>
-    
-        {% endblock %}
-      </div>
 
 
     <div class="container">
@@ -116,44 +27,26 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+<script>
+    const options = {
+      bottom: '64px', // default: '32px'
+      right: '32px', // default: '32px'
+      left: 'unset', // default: 'unset'
+      time: '0.5s', // default: '0.3s'
+      mixColor: '#fff', // default: '#fff'
+      backgroundColor: '#E6E9F3',  // default: '#fff'
+      buttonColorDark: '#100f2c',  // default: '#100f2c'
+      buttonColorLight: '#fff', // default: '#fff'
+      saveInCookies: false, // default: true,
+      label: '🌓', // default: ''
+      autoMatchOsTheme: true // default: true
+    }
+    const darkmode = new Darkmode(options);
+    darkmode.showWidget();
 
-
-
-
-    <script src="{% static 'js/switch.js' %}"></script>
-
-    <script>
-  
-        document.addEventListener("DOMContentLoaded", function () {
-        const allLi = document.querySelectorAll(".menu-links nav-link");
-      
-        allLi.forEach((li, index) => {
-          li.addEventListener("click", (e) => {
-            e.preventDefault();
-      
-            // Remove o 'active' do item ativo atual
-            const activeItem = document.querySelector(".menu-links .active");
-            if (activeItem) {
-              activeItem.classList.remove("active");
-            }
-      
-            // Adiciona 'active' class ao item clicado
-            li.classList.add("active");
-      
-            // Atualiza a posição do indicador
-            const indicator = document.querySelector(".indicator");
-            indicator.style.transform = `translateX(calc(${index * 90}px))`;
-          });
-        });
-      });
-  
-    </script>
-
-
-
+    window.addEventListener('load', addDarkmodeWidget);
+</script>
 
 </body>
 </html>

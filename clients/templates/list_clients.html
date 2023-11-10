@@ -8,26 +8,28 @@ Lista de clientes
 {% block main %}
 
 
-    <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-        <div class="card-header">Clientes</div>
-        <div class="card-body">
-          <h3 class="card-title">{{ client_count }}</h3>
-        </div>
-      </div>
 
 
-    <div class="container">
-        <div class="container-list" id="one">
+<p>Contagem de clientes</p>
+  <p class="main-text">{{ client_count }}</p>
+
+    <div>
+        <div>
 
             <h2>Lista de clientes</h2>
             <div>
             </div>
 
-            <table class="table table-striped">
+            <table>
 
                 <thead>
                     <tr>
                         <th>Nome</th>
+                        <th>CNPJ/CPF</th>
+                        <th>E-mail</th>
+                        <th>Telefone</th>
+                        <th>Cidade</th>
+                        <th>Bairro</th>
                         <th>Opções</th>
                     </tr>
                 </thead>
@@ -40,11 +42,40 @@ Lista de clientes
                                     <a href="{% url 'detail_client' client.id %}">{{ client.client_name }}</a>
                                 </td>
 
+                                <!-- CNPJ -->
+                                <td>
+                                    {% if client.cnpj %}
+                                        <a href="{% url 'detail_client' client.id %}">{{ client.cnpj }}</a>
+                                    {% elif client.cpf %}
+                                        <a href="{% url 'detail_client' client.id %}">{{ client.cpf }}</a>
+                                    {% endif %}
+                                </td>
+
+                                <!-- E-mail -->
+                                <td>
+                                    <a href="{% url 'detail_client' client.id %}">{{ client.email_primary }}</a>
+                                </td>
+
+                                <!-- PHONE -->
+                                <td>
+                                    <a href="{% url 'detail_client' client.id %}">{{ client.phone_primary }}</a>
+                                </td>
+
+                                <!-- CITY -->
+                                <td>
+                                    <a href="{% url 'detail_client' client.id %}">{{ client.city }}</a>
+                                </td>
+
+                                <!-- NEIGHBORHOOD -->
+                                <td>
+                                    <a href="{% url 'detail_client' client.id %}">{{ client.neighborhood }}</a>
+                                </td>
+
                                 
                                 <!-- OPTIONS -->
                                 <td>
                                     <a href="{% url 'edit_client' client.id %}">
-                                        <button class="btn btn-primary" id="btn-bg-blue-1">Editar</button>
+                                        Editar
                                     </a>
                                 </td>
                             </tr>
@@ -53,12 +84,11 @@ Lista de clientes
 
             </table>
 
-            <div class="add-new-client-btn">
-                <a href="{% url 'create_client' %}" class="new-client-icon">
-                    <i class="fa-solid fa-user-plus"></i>
-                </a>
-                <span class="tooltip">Adicionar pessoa</span>
-            </div>
+
+            <a href="{% url 'create_client' %}" class="new-client-icon">
+                <button class="cbtn primary">Adicionar cliente</button>
+            </a>
+
 
         </div>
     </div>
