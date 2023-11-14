@@ -70,9 +70,9 @@ class User(AbstractBaseUser):
     def get_full_name(self): # Return the name of the user
         return self.full_name
 
-    def get_first_name(self): # Return the firstname of the user
-        first_name = self.full_name.split(' ')
-        return first_name
+    def get_split_name(self): # Return the firstname of the user
+        split_name = self.full_name.split(' ')
+        return split_name
     
     
 

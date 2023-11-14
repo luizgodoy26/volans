@@ -2,11 +2,18 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Promptus{% endblock %}</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Promptus{% endblock %}</title>
 
-    <!-- Custom stylesheet -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  />
+
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 </head>
 <body>
@@ -17,36 +24,138 @@
 
 
     <div class="container">
+      <div class="sidebar close">
+        <div class="logo">
+          <a href="{% url 'list_clients' %}"><i class="fab fa-trade-federation"></i></a>  
+          <a href="{% url 'list_clients' %}"><span class="logo-name">Tivotal</span></a>          
+        </div>
+  
+        <ul class="nav-list">
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-chart-line"></i>
+              <span class="link-name">Dashboard</span>
+            </a>
+  
+            <ul class="sub-menu blank">
+              <li><a href="#" class="link-name">Dashboard</a></li>
+            </ul>
+          </li>
+  
+          <li>
+            <div class="icon-link">
+              <a href="#">
+                <i class="fa-solid fa-box"></i>
+                <span class="link-name">Inventário</span>
+              </a>
+              <i class="fas fa-caret-down arrow"></i>
+            </div>
+  
+            <ul class="sub-menu">              
+              <li><a href="{% url 'list_stock' %}">Estoque</a></li>
+              <li><a href="{% url 'list_items' %}" class="link-name">Itens</a></li>
+              <li><a href="{% url 'list_sizes' %}">Tamanhos</a></li>
+              <li><a href="{% url 'list_categories' %}">Categorias</a></li>
+            </ul>
+          </li>
+  
+  
+          <li>
+            <a href="#">
+              <i class="fa-solid fa-users"></i>
+              <span class="link-name">Clientes</span>
+            </a>
+  
+            <ul class="sub-menu blank">
+              <li><a href="#" class="link-name">Clientes</a></li>
+            </ul>
+          </li>
 
-        {% block main %}
+          <li>
+            <a href="{% url 'detail_company' user.company.id %}">
+              <i class="fa-solid fa-building"></i>
+              <span class="link-name">Sua empresa</span>
+            </a>
+  
+            <ul class="sub-menu blank">
+              <li><a href="{% url 'detail_company' user.company.id %}" class="link-name">Sua empresa</a></li>
+            </ul>
+          </li>
 
-        {% endblock %}
+
+          <li>
+            <div class="profile-details">
+              <div class="profile-content">
+                <img src="{{ company.logo.url }}"></img>
+
+              </div>
+  
+              <div class="name-job">
+                <div class="name">{{ user.get_split_name|first|title }} {{ user.get_split_name|last|title }}</div>
+                <div class="job">{{ user.company }}</div>
+              </div>
+              <i class="fas fa-right-to-bracket"></i>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+  
+      <div class="home-section">
+        <div class="home-content">
+          <i class="fas fa-bars"></i>
+
+          {% block main %}
+          {% endblock %}
+          
+        </div>
+      </div>
+
+      <script>
+        let btn = document.querySelector(".fa-bars");
+        let sidebar = document.querySelector(".sidebar");
+
+        btn.addEventListener("click", () => {
+          sidebar.classList.toggle("close");
+        });
+
+        let arrows = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrows.length; i++) {
+          arrows[i].addEventListener("click", (e) => {
+            let arrowParent = e.target.parentElement.parentElement;
+
+            arrowParent.classList.toggle("show");
+          });
+        }
+      </script>
+
 
     </div>
 
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
-    const options = {
-      bottom: '64px', // default: '32px'
-      right: '32px', // default: '32px'
-      left: 'unset', // default: 'unset'
-      time: '0.5s', // default: '0.3s'
-      mixColor: '#fff', // default: '#fff'
-      backgroundColor: '#E6E9F3',  // default: '#fff'
-      buttonColorDark: '#100f2c',  // default: '#100f2c'
-      buttonColorLight: '#fff', // default: '#fff'
-      saveInCookies: false, // default: true,
-      label: '🌓', // default: ''
-      autoMatchOsTheme: true // default: true
-    }
-    const darkmode = new Darkmode(options);
-    darkmode.showWidget();
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script>
+        const options = {
+          bottom: '64px', // default: '32px'
+          right: '32px', // default: '32px'
+          left: 'unset', // default: 'unset'
+          time: '0.5s', // default: '0.3s'
+          mixColor: '#fff', // default: '#fff'
+          backgroundColor: '#E6E9F3',  // default: '#fff'
+          buttonColorDark: '#100f2c',  // default: '#100f2c'
+          buttonColorLight: '#fff', // default: '#fff'
+          saveInCookies: false, // default: true,
+          label: '🌓', // default: ''
+          autoMatchOsTheme: true // default: true
+        }
+        const darkmode = new Darkmode(options);
+        darkmode.showWidget();
+    
+        window.addEventListener('load', addDarkmodeWidget);
+    </script>
 
-    window.addEventListener('load', addDarkmodeWidget);
-</script>
 
 </body>
 </html>
