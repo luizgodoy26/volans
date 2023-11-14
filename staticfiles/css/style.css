@@ -11,7 +11,8 @@
 
 :root{
     /* ===== Colors ===== */
-    --body-color: #E2E7F6;
+    --body-color: #fff;
+    --container-color: #e9ecf3;
     --primary-color: #0F71F2;
     --primary: #0F71F2;
     --warning: #F2B544;
@@ -25,9 +26,76 @@
     --tran-05: all 0.3s ease;
 }
 
+.main {
+    display: flex;
+    background-color: var(--container-color);
+    margin: 30px;
+    border-radius: 15px;
+    padding: 15px;
+    flex-direction: column;
+}
+
+.row {
+    flex-direction: row;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--body-color);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.form .form-label{
+    margin-bottom: 5px; 
+}
+
+
+.form textarea {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%; 
+    padding: 8px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+
+  input{
+    border-radius: 15px;    
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 10px;
+    width: 100%;
+  }
+  
+
 
 a {
-  color: red;
+  color: #000;
   text-decoration: none;
 }
 
@@ -50,6 +118,45 @@ body {
     display:flex;
     text-align: center;
 }
+
+
+
+/*
+    TABLES  TABLES  TABLES  TABLES
+*/
+table {
+    width: 100%;
+}
+
+th {
+    background-color: var(--primary);
+    color: white;
+}
+
+tr {
+    background-color: #B7D4FB;
+}
+  
+tr:nth-child(even) {
+    background-color: #DDE9FA;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tr:last-child td:last-child  {
+    border-bottom-right-radius: 10px;
+}
+
+tr:last-child td:first-child  {
+    border-bottom-left-radius: 10px;
+}
+
 
 
 /*
@@ -112,7 +219,7 @@ body {
 }
 
 .warning {
-    --color: var(--warning);}
+    --color: var(--warning);
 }
 
 /*
